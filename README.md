@@ -37,3 +37,11 @@ A raiz contém `vercel.json`; `api/stock.py` é uma função Python. Os arquivos
 ## Créditos
 
 Galáxia adaptada de Galaxy Generator, Alvaro Saburido (MIT, 2022), inspirado no Three.js Journey. Licença original preservada no HTML. Three.js r160 incluído sob MIT. Projeto desenvolvido com assistência de IA.
+
+## Pulso — Análise de vendas
+
+Acesse /pulso/ para importar CSV ou usar a amostra. API Python /api/pulso, sem dependências. Campos: pedido, data, produto, categoria, quantidade, preco_unitario. Datas ISO, valores não negativos, sem separador de milhar, quantidade inteira positiva.
+
+Limites: 500 KB, 5.000 linhas, intervalo de até 10 anos. Duplicatas exatas nas seis colunas são excluídas; linhas inválidas são listadas. Ticket médio divide receita pelos pedidos distintos no filtro. Comparação usa o intervalo imediatamente anterior com o mesmo número de dias; variação fica sem base quando a receita anterior é zero. Não calcula lucro, descontos ou devoluções.
+
+O CSV é enviado para análise em memória, sem persistência. Use dados fictícios. Exportação contém indicadores, ranking e problemas identificados. Desenvolvimento assistido por IA.

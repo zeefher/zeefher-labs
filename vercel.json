@@ -7,6 +7,9 @@
   "functions": {
     "api/stock.py": {
       "maxDuration": 10
+    },
+    "api/pulso.py": {
+      "maxDuration": 10
     }
   },
   "headers": [
