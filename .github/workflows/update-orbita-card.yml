@@ -1,0 +1,56 @@
+name: Update Orbita portfolio card
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  update-card:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add Orbita project to portfolio
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+
+          start_marker = "dados:{label:'Dados'"
+          next_marker = "\ncodigo:{label:'Código'"
+          start = text.find(start_marker)
+          end = text.find(next_marker, start)
+
+          if start < 0 or end < 0:
+              raise SystemExit('Não foi possível localizar o bloco Dados no index.html')
+
+          replacement = '''dados:{label:'Dados',title:'Órbita — controle de estoque.',description:'Aplicação web de controle de estoque com cadastro de produtos, movimentações de entrada e saída, alertas de estoque baixo, indicadores e exportação CSV. O backend usa Python com SQLite e regras de negócio; a demonstração fica isolada para cada visitante.',tags:['Python','SQL / SQLite','API','JavaScript'],note:'Projeto funcional publicado. Use dados fictícios: as alterações da demonstração ficam apenas no navegador de cada visitante.',visual:'<div class="demo"><div class="demo-top"><span>PROJETO 01 / PYTHON + SQL</span><span>ONLINE</span></div><h4>Órbita Estoque</h4><p>Produtos, movimentações e decisões em um só lugar.</p><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:24px 0 4px"><div style="border:1px solid #ffffff21;border-radius:7px;padding:12px"><strong style="display:block;font-size:22px;color:#f4f5fa">5</strong><span style="font-size:10px;color:#8b97ac">PRODUTOS</span></div><div style="border:1px solid #ffffff21;border-radius:7px;padding:12px"><strong style="display:block;font-size:22px;color:#f4f5fa">38</strong><span style="font-size:10px;color:#8b97ac">UNIDADES</span></div><div style="border:1px solid #ffffff21;border-radius:7px;padding:12px"><strong style="display:block;font-size:22px;color:#f4f5fa">2</strong><span style="font-size:10px;color:#8b97ac">ALERTAS</span></div></div><a class="primary" href="/estoque" target="_blank" rel="noopener" aria-label="Abrir demonstração do Órbita Estoque">Abrir projeto <span>↗</span></a></div>'},'''
+
+          updated = text[:start] + replacement + text[end:]
+
+          if 'href="/estoque"' not in updated or 'Órbita Estoque' not in updated:
+              raise SystemExit('Validação da alteração falhou')
+
+          path.write_text(updated, encoding='utf-8')
+          PY
+
+      - name: Commit portfolio update and remove temporary workflow
+        shell: bash
+        run: |
+          git config user.name "zeefher"
+          git config user.email "actions@users.noreply.github.com"
+          git rm .github/workflows/update-orbita-card.yml
+          git add index.html
+          git commit -m "feat: add Orbita Estoque to portfolio"
+          git push origin main
