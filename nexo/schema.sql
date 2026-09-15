@@ -1,0 +1,11 @@
+PRAGMA foreign_keys = ON;
+CREATE TABLE clientes(id INTEGER PRIMARY KEY, nome TEXT NOT NULL, cidade TEXT NOT NULL);
+CREATE TABLE produtos(id INTEGER PRIMARY KEY, nome TEXT NOT NULL, estoque INTEGER NOT NULL CHECK(estoque>=0), minimo INTEGER NOT NULL CHECK(minimo>=0));
+CREATE TABLE pedidos(id INTEGER PRIMARY KEY, cliente_id INTEGER NOT NULL REFERENCES clientes(id), data TEXT NOT NULL, status TEXT NOT NULL CHECK(status IN ('pago','cancelado')));
+CREATE TABLE itens(pedido_id INTEGER REFERENCES pedidos(id), produto_id INTEGER REFERENCES produtos(id), quantidade INTEGER NOT NULL CHECK(quantidade>0), preco_centavos INTEGER NOT NULL CHECK(preco_centavos>=0), PRIMARY KEY(pedido_id,produto_id));
+CREATE INDEX idx_pedidos_data_status ON pedidos(data,status);
+CREATE INDEX idx_pedidos_cliente ON pedidos(cliente_id);
+INSERT INTO clientes VALUES(1,'Cliente Aurora','São Luís'),(2,'Cliente Horizonte','São Luís'),(3,'Cliente Farol','Imperatriz'),(4,'Cliente Maré','Bacabal');
+INSERT INTO produtos VALUES(1,'Teclado',12,5),(2,'Mouse',4,8),(3,'SSD',7,4),(4,'Monitor',2,3);
+INSERT INTO pedidos VALUES(1,1,'2026-07-10','pago'),(2,2,'2026-07-20','pago'),(3,1,'2026-08-10','pago'),(4,3,'2026-08-15','pago'),(5,2,'2026-09-01','cancelado'),(6,1,'2026-09-08','pago');
+INSERT INTO itens VALUES(1,1,2,10000),(1,2,1,5000),(2,3,1,20000),(3,1,1,10000),(3,3,2,20000),(4,2,3,5000),(5,4,1,80000),(6,4,1,80000);

@@ -10,6 +10,9 @@
     },
     "api/pulso.py": {
       "maxDuration": 10
+    },
+    "api/nexo.py": {
+      "maxDuration": 10
     }
   },
   "headers": [

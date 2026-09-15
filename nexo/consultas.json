@@ -1,0 +1,37 @@
+[
+  {
+    "concept": "JOIN · GROUP BY · COUNT DISTINCT",
+    "explanation": "Soma os itens dos pedidos pagos por cliente. COUNT DISTINCT impede que um pedido com vários itens seja contado mais de uma vez. Valores em reais; não representam lucro.",
+    "id": "clientes",
+    "sql": "SELECT c.nome AS cliente,\n       COUNT(DISTINCT p.id) AS pedidos,\n       SUM(i.quantidade * i.preco_centavos) / 100.0 AS receita_reais\nFROM clientes c\nJOIN pedidos p ON p.cliente_id = c.id\nJOIN itens i ON i.pedido_id = p.id\nWHERE p.status = 'pago' AND p.data BETWEEN :inicio AND :fim\nGROUP BY c.id, c.nome\nORDER BY receita_reais DESC, c.nome;",
+    "title": "Quais clientes geram mais receita?"
+  },
+  {
+    "concept": "CTE · LAG · função de janela",
+    "explanation": "Agrupa a receita dos pedidos pagos por mês. LAG compara com o mês anterior presente no resultado; meses sem vendas não aparecem. A primeira linha não tem base de comparação.",
+    "id": "mensal",
+    "sql": "WITH mensal AS (\n  SELECT substr(p.data, 1, 7) AS mes,\n         SUM(i.quantidade * i.preco_centavos) / 100.0 AS receita_reais\n  FROM pedidos p JOIN itens i ON i.pedido_id = p.id\n  WHERE p.status = 'pago' AND p.data BETWEEN :inicio AND :fim\n  GROUP BY substr(p.data, 1, 7)\n), comparativo AS (\n  SELECT mes, receita_reais,\n         LAG(receita_reais) OVER (ORDER BY mes) AS anterior_reais\n  FROM mensal\n)\nSELECT mes, receita_reais, anterior_reais,\n       ROUND(100.0 * (receita_reais - anterior_reais) /\n             NULLIF(anterior_reais, 0), 2) AS variacao_percentual\nFROM comparativo ORDER BY mes;",
+    "title": "Como a receita evolui mês a mês?"
+  },
+  {
+    "concept": "NOT EXISTS · subconsulta correlacionada",
+    "explanation": "Inclui clientes sem nenhum pedido pago no período selecionado, mesmo aqueles que nunca compraram. Pedidos cancelados não contam como compra.",
+    "id": "inativos",
+    "sql": "SELECT c.nome AS cliente, c.cidade\nFROM clientes c\nWHERE NOT EXISTS (\n  SELECT 1 FROM pedidos p\n  WHERE p.cliente_id = c.id AND p.status = 'pago'\n    AND p.data BETWEEN :inicio AND :fim\n)\nORDER BY c.nome;",
+    "title": "Quais clientes não compraram no período?"
+  },
+  {
+    "concept": "SUM · DENSE_RANK · CTE",
+    "explanation": "Classifica os produtos pela receita dos pedidos pagos no período. Produtos empatados recebem a mesma posição; quantidades vendidas também são exibidas.",
+    "id": "produtos",
+    "sql": "WITH vendas AS (\n  SELECT pr.nome AS produto, SUM(i.quantidade) AS unidades,\n         SUM(i.quantidade * i.preco_centavos) / 100.0 AS receita_reais\n  FROM produtos pr JOIN itens i ON i.produto_id = pr.id\n  JOIN pedidos p ON p.id = i.pedido_id\n  WHERE p.status = 'pago' AND p.data BETWEEN :inicio AND :fim\n  GROUP BY pr.id, pr.nome\n)\nSELECT DENSE_RANK() OVER (ORDER BY receita_reais DESC) AS posicao,\n       produto, unidades, receita_reais\nFROM vendas ORDER BY posicao, produto;",
+    "title": "Quais produtos lideram as vendas?"
+  },
+  {
+    "concept": "WHERE · expressão calculada",
+    "explanation": "Mostra o retrato atual do estoque fictício, independente do filtro de datas. A sugestão repõe até o mínimo mais uma unidade. Este saldo não é calculado a partir dos pedidos da amostra.",
+    "id": "estoque",
+    "sql": "SELECT nome AS produto, estoque, minimo,\n       minimo + 1 - estoque AS reposicao_sugerida\nFROM produtos WHERE estoque <= minimo\nORDER BY reposicao_sugerida DESC, nome;",
+    "title": "O que precisa de reposição?"
+  }
+]

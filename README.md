@@ -45,3 +45,11 @@ Acesse /pulso/ para importar CSV ou usar a amostra. API Python /api/pulso, sem d
 Limites: 500 KB, 5.000 linhas, intervalo de até 10 anos. Duplicatas exatas nas seis colunas são excluídas; linhas inválidas são listadas. Ticket médio divide receita pelos pedidos distintos no filtro. Comparação usa o intervalo imediatamente anterior com o mesmo número de dias; variação fica sem base quando a receita anterior é zero. Não calcula lucro, descontos ou devoluções.
 
 O CSV é enviado para análise em memória, sem persistência. Use dados fictícios. Exportação contém indicadores, ranking e problemas identificados. Desenvolvimento assistido por IA.
+
+## Nexo SQL — Projeto 03
+
+Acesse /nexo. Cinco perguntas de negócio com SQL exibido e executado em SQLite em memória: clientes por receita, evolução mensal, clientes sem compra, ranking de produtos e reposição de estoque. As consultas ficam em nexo/consultas.json; estrutura, índices e dados reproduzíveis em nexo/schema.sql.
+
+Datas são parâmetros vinculados. A API aceita somente identificadores de consultas previamente definidas, sem SQL arbitrário. Os resultados podem ser exportados em CSV. Dados fictícios de julho a setembro de 2026. Pedidos cancelados são excluídos da receita. Estoque é um retrato independente das vendas. LAG compara o mês anterior presente no resultado, não preenche meses sem vendas. Preços em centavos; não calcula lucro. Projeto desenvolvido com assistência de IA.
+
+Execute todos os testes com python -m unittest discover -s tests.
