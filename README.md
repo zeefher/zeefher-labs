@@ -34,9 +34,13 @@ python3 -m unittest discover -s tests
 
 A raiz contém `vercel.json`; `api/stock.py` é uma função Python. Os arquivos estáticos não precisam de build.
 
-## Créditos
+## Portfólio
 
-Galáxia adaptada de Galaxy Generator, Alvaro Saburido (MIT, 2022), inspirado no Three.js Journey. Licença original preservada no HTML. Three.js r160 incluído sob MIT. Projeto desenvolvido com assistência de IA.
+A página inicial reúne apresentação, projetos com filtros por área, trajetória expansível e acesso ao perfil no GitHub. As demonstrações e a galeria mantêm suas rotas originais. As miniaturas dos sistemas são prévias ilustrativas; a galeria usa os materiais editoriais existentes.
+
+`portfolio.css` contém o layout responsivo. `portfolio.js` implementa os filtros e uma galáxia espiral em Canvas 2D, sem bibliotecas externas. A animação pode ser pausada, respeita a preferência de movimento reduzido e interrompe o loop quando sai da tela ou a aba fica oculta. Sem JavaScript, os projetos continuam visíveis e os links funcionam.
+
+O contato usa somente o perfil público existente no GitHub; nenhum e-mail ou telefone foi presumido. Projeto desenvolvido com assistência de IA.
 
 ## Pulso — Análise de vendas
 
