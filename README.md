@@ -34,13 +34,15 @@ python3 -m unittest discover -s tests
 
 A raiz contém `vercel.json`; `api/stock.py` é uma função Python. Os arquivos estáticos não precisam de build.
 
-## Portfólio
+## Portfólio — explorador solar 3D
 
-A página inicial reúne apresentação, projetos com filtros por área, trajetória expansível e acesso ao perfil no GitHub. As demonstrações e a galeria mantêm suas rotas originais. As miniaturas dos sistemas são prévias ilustrativas; a galeria usa os materiais editoriais existentes.
+A página inicial é um sistema solar em Three.js com planetas associados a Design, Desenvolvimento, Dados, Sobre e Contato. Selecionar uma área aproxima a câmera e revela os trabalhos como satélites. Os painéis preservam os links para demonstração, galeria e código.
 
-`portfolio.css` contém o layout responsivo. `portfolio.js` implementa os filtros e uma galáxia espiral em Canvas 2D, sem bibliotecas externas. A animação pode ser pausada, respeita a preferência de movimento reduzido e interrompe o loop quando sai da tela ou a aba fica oculta. Sem JavaScript, os projetos continuam visíveis e os links funcionam.
+O menu oferece acesso direto a todos os trabalhos. Há pausa de animação, preferência de movimento reduzido, teclado, arraste e zoom. Sem JavaScript ou WebGL, os links dos projetos continuam acessíveis. As órbitas e dimensões são ilustrativas, sem escala astronômica.
 
-O contato usa somente o perfil público existente no GitHub; nenhum e-mail ou telefone foi presumido. Projeto desenvolvido com assistência de IA.
+`solar/app.js` contém a cena e a navegação; `solar/style.css` contém a interface responsiva. `portfolio.css` permanece como base das miniaturas de software, identificadas como ilustrativas. Licença Three.js e créditos de texturas ficam em `solar/README.md` e `solar/vendor/THREE-LICENSE.txt`.
+
+O contato usa o perfil público existente no GitHub. Projeto desenvolvido com assistência de IA.
 
 ## Pulso — Análise de vendas
 
