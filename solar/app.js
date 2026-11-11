@@ -13,7 +13,7 @@
   const definitions=[
     {id:'mercurio',name:'Mercúrio',r:.48,orbit:6.4,angle:4.7,speed:.2,color:'#b4afa5',kind:'rock'},
     {id:'design',name:'Vênus',label:'Design',r:1.38,orbit:10,angle:3.65,speed:.1,color:'#aa90c7',kind:'venus',description:'Informação que ganha forma. Design editorial e diagramação.',projects:['editorial']},
-    {id:'codigo',name:'Terra',label:'Desenvolvimento',r:1.65,orbit:15,angle:.4,speed:.07,color:'#508ab7',kind:'earth',description:'Sites, sistemas e ferramentas. Ideias transformadas em código.',projects:['orbita','nexo']},
+    {id:'codigo',name:'Terra',label:'Desenvolvimento',r:1.65,orbit:15,angle:.4,speed:.07,color:'#508ab7',kind:'earth',description:'Sites, sistemas e ferramentas. Ideias transformadas em código.',projects:['minivento','orbita','nexo']},
     {id:'dados',name:'Marte',label:'Dados',r:1.24,orbit:20,angle:1.8,speed:.053,color:'#c0785a',kind:'mars',description:'Análises e consultas que transformam dados em respostas.',projects:['pulso','nexo']},
     {id:'jupiter',name:'Júpiter',r:2.15,orbit:25,angle:3.7,speed:.032,color:'#cfaf8c',kind:'gas'},
     {id:'sobre',name:'Saturno',label:'Sobre',r:1.9,orbit:30,angle:5.3,speed:.024,color:'#d2c19d',kind:'gas',ring:true,description:'Minha trajetória, experiência e ferramentas.'},
@@ -119,7 +119,7 @@
   function createSatellites(world){
     clearSatellites();const ids=world.projects||[];const r=world.r;
     ids.forEach((id,index)=>{
-      const a=index===0?2.65:3.9;const marker=new THREE.Mesh(new THREE.SphereGeometry(r*.027,12,8),new THREE.MeshBasicMaterial({color:'#b6edff'}));marker.position.copy(world.anchor.position).add(new THREE.Vector3(Math.cos(a)*r*1.7,Math.sin(a)*r*1.1,r*.3));scene.add(marker);satellites.push(marker);
+      const a=ids.length>2?2.25+index*.9:index===0?2.65:3.9;const marker=new THREE.Mesh(new THREE.SphereGeometry(r*.027,12,8),new THREE.MeshBasicMaterial({color:'#b6edff'}));marker.position.copy(world.anchor.position).add(new THREE.Vector3(Math.cos(a)*r*1.7,Math.sin(a)*r*1.1,r*.3));scene.add(marker);satellites.push(marker);
       const halo=new THREE.Sprite(new THREE.SpriteMaterial({map:haloTexture('#9eeaffbb'),color:'#9eeaff',transparent:true,depthWrite:false,blending:THREE.AdditiveBlending}));halo.scale.set(r*.3,r*.3,1);halo.position.copy(marker.position);scene.add(halo);satellites.push(halo);
       const label=document.createElement('button');label.type='button';label.className='satellite-label';label.textContent=projects[id].title;label.addEventListener('click',()=>openProject(id));satelliteLayer.append(label);satelliteLabels.push(label);label.worldPoint=marker.position;label.projectId=id;
     });
@@ -144,9 +144,9 @@
     document.getElementById('project-title').textContent=project.title;
     document.getElementById('project-description').textContent=project.description;
     document.getElementById('project-visual').innerHTML=project.visual;
-    const demo=document.getElementById('project-demo');demo.href=project.href;demo.textContent=id==='editorial'?'Abrir galeria ↗':'Abrir demonstração ↗';
+    const demo=document.getElementById('project-demo');demo.href=project.href;if(project.href.startsWith('https://')){demo.target='_blank';demo.rel='noopener noreferrer';}else{demo.removeAttribute('target');demo.removeAttribute('rel');}demo.textContent=id==='editorial'?'Abrir galeria ↗':'Abrir demonstração ↗';
     const code=document.getElementById('project-code');code.hidden=!project.code;if(project.code)code.href=project.code;
-    document.getElementById('project-preview-note').textContent=id==='editorial'?'Design e diagramação · créditos originais preservados':'Prévia ilustrativa · demonstração com dados fictícios';
+    document.getElementById('project-preview-note').textContent=project.previewNote||(id==='editorial'?'Design e diagramação · créditos originais preservados':'Prévia ilustrativa · demonstração com dados fictícios');
     projectPanel.scrollTop=0;satelliteLabels.forEach(label=>label.dataset.selected=String(label.projectId===id));fly(planetView(selected,true));announcements.textContent=`Projeto ${project.title}. ${project.description}`;
     document.getElementById('project-close').focus({preventScroll:true});
   }
