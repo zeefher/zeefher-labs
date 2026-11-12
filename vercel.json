@@ -13,6 +13,10 @@
     },
     "api/nexo.py": {
       "maxDuration": 10
+    },
+    "api/zeeclima.py": {
+      "maxDuration": 60,
+      "includeFiles": "zeeclima/servidor.py"
     }
   },
   "headers": [

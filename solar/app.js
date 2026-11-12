@@ -13,7 +13,7 @@
   const definitions=[
     {id:'mercurio',name:'Mercúrio',r:.48,orbit:6.4,angle:4.7,speed:.2,color:'#b4afa5',kind:'rock'},
     {id:'design',name:'Vênus',label:'Design',r:1.38,orbit:10,angle:3.65,speed:.1,color:'#aa90c7',kind:'venus',description:'Informação que ganha forma. Design editorial e diagramação.',projects:['editorial']},
-    {id:'codigo',name:'Terra',label:'Desenvolvimento',r:1.65,orbit:15,angle:.4,speed:.07,color:'#508ab7',kind:'earth',description:'Sites, sistemas e ferramentas. Ideias transformadas em código.',projects:['minivento','orbita','nexo']},
+    {id:'codigo',name:'Terra',label:'Desenvolvimento',r:1.65,orbit:15,angle:.4,speed:.07,color:'#508ab7',kind:'earth',description:'Sites, sistemas e ferramentas. Ideias transformadas em código.',projects:['zeeclima','minivento','orbita','nexo']},
     {id:'dados',name:'Marte',label:'Dados',r:1.24,orbit:20,angle:1.8,speed:.053,color:'#c0785a',kind:'mars',description:'Análises e consultas que transformam dados em respostas.',projects:['pulso','nexo']},
     {id:'jupiter',name:'Júpiter',r:2.15,orbit:25,angle:3.7,speed:.032,color:'#cfaf8c',kind:'gas'},
     {id:'sobre',name:'Saturno',label:'Sobre',r:1.9,orbit:30,angle:5.3,speed:.024,color:'#d2c19d',kind:'gas',ring:true,description:'Minha trajetória, experiência e ferramentas.'},

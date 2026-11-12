@@ -1,0 +1,49 @@
+
+/* O foco acompanha os limites geográficos, sem caixa retangular do navegador. */
+.map-state:focus,.map-state:focus-visible,.municipal-shape:focus,.municipal-shape:focus-visible{outline:none!important}
+.map-state:focus-visible,.municipal-shape:focus-visible{stroke:#fff;stroke-width:3;stroke-dasharray:4 2}
+[hidden]{display:none!important}
+.municipal-controls{display:flex;align-items:center;gap:14px;padding:18px 24px;border-bottom:1px solid #28404d;flex-wrap:wrap}
+.municipal-controls strong{color:#edf4f4;font-size:15px}
+.municipal-controls select{min-width:0;flex:1;max-width:300px;background:#132633;color:#e1eeed;border:1px solid #3c595f;border-radius:9px;padding:11px;font:inherit;font-size:13px}
+.municipal-back,.municipal-explore{background:transparent;color:#a4e8d7;border:1px solid #3c595f;border-radius:9px;padding:10px 14px;cursor:pointer;font:inherit;font-size:13px}
+.municipal-explore{margin:0 24px 22px}
+.municipal-back:hover,.municipal-explore:hover{background:#19383f}
+.municipal-map{position:absolute;inset:0;width:100%;height:100%}
+.municipal-shape{stroke:#142b38;stroke-width:.65;vector-effect:non-scaling-stroke;cursor:pointer;transition:fill .2s}
+.municipal-shape:hover{filter:brightness(1.25);stroke:#d0e8e4;stroke-width:1.4}
+.municipal-shape[aria-pressed=true]{stroke:#fff;stroke-width:2;filter:brightness(1.2)}
+.municipal-detail{margin:0 24px 20px;border-top:1px solid #2d444f;padding-top:20px;color:#a8bbc4}
+.municipal-eyebrow{color:#80dfca;font-size:10px;letter-spacing:1.6px}
+.municipal-detail h3{font-size:23px;color:#f0f6f5;margin:8px 0 12px}
+.municipal-detail p{font-size:13px;line-height:1.65}
+.municipal-detail .municipal-code{font-size:11px;color:#819ba8}
+.municipal-warning{padding:14px 0;border-top:1px solid #243e4b}
+.municipal-warning span{font-size:11px}
+.municipal-warning h4{margin:6px 0;color:#e7f2f0;font-size:16px}
+.municipal-warning a{color:#a4e8d7;font-size:12px}
+@media(max-width:600px){.municipal-controls{padding:14px;gap:10px}.municipal-controls select{flex-basis:100%;max-width:none;width:100%}.municipal-detail{margin:0 16px 18px}.municipal-explore{margin:0 16px 18px}.municipal-detail h3{font-size:21px}}
+
+.municipal-active .map-coordinate{display:none}
+
+body.city-selected .official-detail,body.city-selected .simulation-detail{display:none!important}
+body.city-selected .workspace>.municipal-detail{display:block;margin:0;background:#10212d;border:1px solid #2d444f;border-radius:16px;padding:26px;align-self:start;min-width:0}
+.municipal-caption{position:absolute;left:20px;bottom:18px;background:#0b1c28e8;border:1px solid #36525e;padding:9px 14px;border-radius:8px;color:#b5eadd;pointer-events:none;font-size:13px}
+.municipal-weather{margin:18px 0 24px;padding-top:18px;border-top:1px solid #2d444f}
+.municipal-weather .weather-summary{font-size:25px;line-height:1.2;color:#e6f4ef;margin:12px 0 18px}
+.weather-metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.weather-metrics>div{border:1px solid #294651;background:#142d38;padding:14px 10px;border-radius:10px}
+.weather-metrics span{display:block;font-size:10px;color:#9eb8c2;margin-bottom:9px}
+.weather-metrics strong{font-size:19px;color:#c8eee4;font-weight:500}
+.weather-period{border-top:1px solid #29404c;padding:13px 0}
+.weather-period>strong{color:#d7ede7;font-size:13px}
+.weather-period p{margin:6px 0}
+.weather-period .weather-wind{font-size:11px;color:#99b5c1}
+.weather-next{border:1px solid #294651;border-radius:9px;padding:12px;font-size:12px;margin:12px 0}
+.weather-next summary{cursor:pointer;color:#b5eadd}
+.municipal-weather>a{color:#a4e8d7;font-size:12px}
+.municipal-alert-heading{color:#d7ede7;font-size:14px;border-top:1px solid #294651;padding-top:20px}
+.weather-stale{color:#ddc26d}
+@media(max-width:850px){body.city-selected .workspace>.municipal-detail{margin:0;padding:22px}}
+
+.municipal-caption{z-index:3}.weather-explanation{color:#b8cfd4}

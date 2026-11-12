@@ -2,7 +2,11 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from api.stock import handler
 from api.pulso import handler as pulso_handler
 from api.nexo import handler as nexo_handler
+from api.zeeclima import handler as zeeclima_handler
 class Dev(SimpleHTTPRequestHandler):
+    def do_GET(self):
+        if self.path.split("?")[0]=="/api/zeeclima":return zeeclima_handler.do_GET(self)
+        return super().do_GET()
     def do_POST(self):
         if self.path=='/api/stock': return handler.do_POST(self)
         if self.path=='/api/pulso': return pulso_handler.do_POST(self)

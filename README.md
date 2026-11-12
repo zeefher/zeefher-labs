@@ -59,3 +59,8 @@ Acesse /nexo. Cinco perguntas de negócio com SQL exibido e executado em SQLite 
 Datas são parâmetros vinculados. A API aceita somente identificadores de consultas previamente definidas, sem SQL arbitrário. Os resultados podem ser exportados em CSV. Dados fictícios de julho a setembro de 2026. Pedidos cancelados são excluídos da receita. Estoque é um retrato independente das vendas. LAG compara o mês anterior presente no resultado, não preenche meses sem vendas. Preços em centavos; não calcula lucro. Projeto desenvolvido com assistência de IA.
 
 Execute todos os testes com python -m unittest discover -s tests.
+
+
+## Zeeclima — exploração meteorológica
+
+Acesse /zeeclima/ para explorar o Brasil, selecionar estados e aproximar municípios. Consulte previsão municipal por período e avisos INMET, contexto ENSO/NOAA e cenários simulados identificados. Sem modelo meteorológico próprio nem atribuição automática de eventos ao El Niño. Código e documentação em [zeeclima/](zeeclima/README.md). API Python /api/zeeclima, sem novas dependências. Projeto demonstrativo autoral da Zeefher Labs desenvolvido com assistência de IA.
