@@ -16,7 +16,7 @@
     },
     "api/zeeclima.py": {
       "maxDuration": 60,
-      "includeFiles": "zeeclima/servidor.py"
+      "includeFiles": "zeeclima/**"
     }
   },
   "headers": [

@@ -123,6 +123,8 @@ municipal_locks={uf:threading.Lock() for uf in UF_CODES.values()}
 
 def municipalities(uf):
     if uf not in municipal_locks:raise ValueError('UF inválida')
+    snapshot=Path(__file__).resolve().parent/'municipios'/(uf+'.json')
+    if snapshot.is_file():return json.loads(snapshot.read_text(encoding='utf-8'))
     with municipal_locks[uf]:
         previous=municipal_cache.get(uf)
         if previous and time.monotonic()-previous[0]<86400:return previous[1]

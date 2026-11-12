@@ -142,7 +142,7 @@ window.openMunicipalities=async uf=>{
  restoreDetail();weatherRequest++;weatherLoading=false;stage.classList.add('municipal-active');const id=++request;current=uf;selected=null;loading=true;country.setAttribute('hidden','');svg.removeAttribute('hidden');svg.replaceChildren();controls.hidden=false;detail.hidden=false;explore.hidden=true;selectCity.disabled=true;selectCity.replaceChildren(prompt);heading.textContent=mapData.find(i=>i.uf===uf).name;document.querySelector('.map-hint').hidden=true;$('map-tooltip').hidden=true;showDetails();
  try{
  if(!cache.has(uf)){
- const response=await fetch('/api/zeeclima?resource=municipios&uf='+encodeURIComponent(uf));if(!response.ok)throw Error('Malha indisponível');
+ const response=await fetch('/zeeclima/municipios/'+encodeURIComponent(uf)+'.json');if(!response.ok)throw Error('Malha indisponível');
  const data=await response.json();if(!data.features?.length)throw Error('Malha vazia');cache.set(uf,data);
  }
  if(id!==request)return;loading=false;selectCity.disabled=false;draw(cache.get(uf));

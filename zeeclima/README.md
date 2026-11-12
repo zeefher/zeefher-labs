@@ -81,7 +81,7 @@ A captura é um retrato datado da interface, não um aviso meteorológico atual.
 
 
 ## Exploração municipal
-Clique em um estado para abrir seus municípios (malha e nomes IBGE carregados sob demanda; cache em memória de 24 horas). Selecione uma cidade pelo mapa ou pela lista. Os avisos são associados pelo código municipal publicado pelo INMET, sem interpolação de risco. No modo simulado, os indicadores permanecem estaduais. Use “Brasil” para voltar. Requer servidor.py e conexão às fontes públicas.
+Clique em um estado para abrir seus municípios (malha e nomes IBGE oficiais, com cópia estática datada em municipios/; carregamento sob demanda). Selecione uma cidade pelo mapa ou pela lista. Os avisos são associados pelo código municipal publicado pelo INMET, sem interpolação de risco. No modo simulado, os indicadores permanecem estaduais. Use “Brasil” para voltar. Requer servidor.py e conexão às fontes públicas.
 
 
 ## Zoom e previsão municipal
@@ -89,3 +89,5 @@ Ao selecionar um município, o SVG aproxima seus limites com transição suave (
 
 ## Hospedagem
 A Vercel executa api/zeeclima.py e serve os arquivos estáticos. O cache em memória é oportunista por instância, não compartilhado nem persistente; os prazos não garantem sincronização entre instâncias. Falhas são identificadas, sem preencher lacunas com dados fictícios. A origem dos dados e a ausência de um modelo meteorológico próprio devem ser preservadas em apresentações e materiais de divulgação.
+
+As malhas municipais das 27 UFs foram obtidas diretamente do IBGE em 12/11/2026 e acompanham a publicação. São limites administrativos simplificados, não imagens de satélite nem medições do tempo. O campo fetched_at registra a obtenção. Sua atualização exige nova obtenção do IBGE; previsões e avisos permanecem dinâmicos.
