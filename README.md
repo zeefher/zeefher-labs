@@ -61,6 +61,6 @@ Datas são parâmetros vinculados. A API aceita somente identificadores de consu
 Execute todos os testes com python -m unittest discover -s tests.
 
 
-## Zeeclima — exploração meteorológica
+## Zefira — exploração meteorológica
 
 Acesse /zeeclima/ para explorar o Brasil, selecionar estados e aproximar municípios. Consulte previsão municipal por período e avisos INMET, contexto ENSO/NOAA e cenários simulados identificados. Sem modelo meteorológico próprio nem atribuição automática de eventos ao El Niño. Código e documentação em [zeeclima/](zeeclima/README.md). API Python /api/zeeclima, sem novas dependências. Projeto demonstrativo autoral da Zeefher Labs desenvolvido com assistência de IA.

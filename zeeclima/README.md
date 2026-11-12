@@ -1,4 +1,4 @@
-# Zeeclima — monitoramento meteorológico e contexto ENSO
+# Zefira — monitoramento meteorológico e contexto ENSO
 
 Projeto demonstrativo autoral da Zeefher Labs, desenvolvido com assistência de IA. Reúne dados públicos oficiais e uma simulação interativa em modos distintos.
 
@@ -10,7 +10,7 @@ Projeto demonstrativo autoral da Zeefher Labs, desenvolvido com assistência de 
 
 ## Problema e solução
 
-Informações meteorológicas distribuídas em diferentes fontes exigem contexto e uma navegação clara. O Zeeclima reúne exploração territorial, previsão municipal, avisos e contexto ENSO, identificando origem, validade e limitações. A interface oferece Brasil → estado → município com zoom suave e alternativa de seleção por lista, inclusive no celular.
+Informações meteorológicas distribuídas em diferentes fontes exigem contexto e uma navegação clara. O Zefira reúne exploração territorial, previsão municipal, avisos e contexto ENSO, identificando origem, validade e limitações. A interface oferece Brasil → estado → município com zoom suave e alternativa de seleção por lista, inclusive no celular.
 
 ## Executar localmente
 
